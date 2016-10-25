@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Large URL</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Large URL</h1>
+        <p>Expand your shortened URLs</p>
+
+        <form action="#" id="urlForm">
+            <label>URL:</label>
+            <input type="text" name="url" value="https://t.co/xF7WTMlLsl">
+            <input type="submit">
+        </form>
+
+        <div id="resultDiv" style="display: none">
+            <label>Result: </label>
+            <label id="resultLabel"></label>
+        </div>
+
+        <script type="text/javascript">
+        $("#urlForm").submit(function(event) {
+            event.preventDefault();
+
+            var data = {
+                "url": $(this).find('input[name="url"]').val()
+            };
+
+            $.ajax({
+                type: "get",
+                url: "http://localhost:5000",
+                data: data,
+                contentType: "application/json"
+            }).done(function(response, status, xhr) {
+                $("#resultLabel").html(response["url"]);
+            }).fail(function(xhr, status, error) {
+                $("#resultLabel").html("Error");
+            }).always(function() {
+                    $("#resultDiv").show();
+            });
+        });
+        </script>
+    </body>
+</html>

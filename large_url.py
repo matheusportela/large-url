@@ -10,20 +10,36 @@ import requests
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'OPTIONS'])
 def enlarge_url():
     """Get large URL as received from GET request parameter."""
     url = request.args.get('url')
 
-    if url:
-        result = {
-            'url': get_large_url(url)
-        }
-        return Response(json.dumps(result), status=200,
-                        mimetype='application/json')
+    if request.method == 'GET':
+        if url:
+            result = {
+                'url': get_large_url(url)
+            }
+            # 200: Success
+            response = Response(json.dumps(result), status=200,
+                                mimetype='application/json')
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            response.headers['Access-Control-Allow-Headers'] = 'content-type'
+        else:
+            result = {}
+
+            # 400: Bad request
+            response = Response(status=400, mimetype='application/json')
+    elif request.method == 'OPTIONS':
+        # 200: Success
+        response = Response(status=200)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Headers'] = 'content-type'
     else:
-        result = {}
-        return Response(status=400, mimetype='application/json')
+        # 405: Method not allowed
+        response = Response(status=405)
+
+    return response
 
 
 def get_large_url(url):

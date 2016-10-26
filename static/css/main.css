@@ -14,6 +14,11 @@ h1 {
     margin-bottom: 5px;
 }
 
+h1 a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
 h2 {
     font-family: Poppins, Helvetica;
     text-align: center;

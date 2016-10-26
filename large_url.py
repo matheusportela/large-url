@@ -51,12 +51,26 @@ def get_large_url(url):
     Return:
     Last URL as extracted from sequential Location header.
     """
-    response = requests.head(url)
+    response = requests.head(add_http(url))
 
     while response.is_redirect:
         url = response.headers['location']
         response = requests.head(url)
 
+    return url
+
+
+def add_http(url):
+    """Add "http://" at the beginning of the URL if no protocol was defined.
+
+    Parameters:
+    url -- URL to add the protocol to.
+
+    Return:
+    URL with given protocol or "http://".
+    """
+    if not '://' in url:
+        return 'http://' + url
     return url
 
 

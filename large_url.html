@@ -3,10 +3,10 @@
     <head>
         <title>Unbitly - URL expander</title>
         <meta charset="utf-8">
-        <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+        <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"/>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster|Poppins:300,500|Raleway:700">
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     </head>
     <body>
         <div class="title">
@@ -55,7 +55,7 @@
                 contentType: "application/json",
                 beforeSend: function(xhr, settings) {
                     $("#resultDiv").css('visibility', 'visible');
-                    $("#resultLabel").html('<img class="loading" src="loading.gif">');
+                    $("#resultLabel").html('<img class="loading" src="assets/img/loading.gif">');
                     $("#copyBtn").html("Copy");
                 }
             }).done(function(response, status, xhr) {

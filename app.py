@@ -82,4 +82,4 @@ def add_http(url):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

@@ -33,6 +33,10 @@ form {
     text-align: center;
 }
 
+.online-demo {
+    width: 100%;
+}
+
 input {
     width: calc(90% - 70px);
     margin: 0;
@@ -115,7 +119,8 @@ footer a {
     border-bottom-color: #4c4c7f;
 }
 
-.example {
+.api-example {
+    width: 100%;
     margin-top: 50px;
     background: #D0D4FF;
     background: rgba(208, 212, 255, 0.5);
@@ -123,18 +128,18 @@ footer a {
     padding: 25px 0;
 }
 
-.example .content {
+.api-example-content {
     max-width: 800px;
     padding: 0 10px;
     margin: 0 auto;
 }
 
-.example h1 {
+.api-example h1 {
     font-size: 22px;
     margin: 0;
 }
 
-.example h2 {
+.api-example h2 {
     margin: 0;
     text-align: left;
 }

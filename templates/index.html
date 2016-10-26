@@ -3,10 +3,10 @@
     <head>
         <title>Unbitly - URL expander</title>
         <meta charset="utf-8">
-        <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"/>
+        <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}"/>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster|Poppins:300,500|Raleway:700">
-        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     <body>
         <div class="title">
@@ -30,7 +30,7 @@
                     <h1>API</h1>
 
                     <h2>Request</h2>
-                    <pre><code>$ curl http://localhost:5000?url=https://t.co/6Tx32jX6O9</code></pre>
+                    <pre><code>$ curl http://unbitly-url.herokuapp.com/api?url=https://t.co/6Tx32jX6O9</code></pre>
 
                     <h2>Result</h2>
                     <pre><code>{
@@ -50,12 +50,12 @@
 
             $.ajax({
                 type: "get",
-                url: "http://localhost:5000",
+                url: "/api",
                 data: data,
                 contentType: "application/json",
                 beforeSend: function(xhr, settings) {
                     $("#resultDiv").css('visibility', 'visible');
-                    $("#resultLabel").html('<img class="loading" src="assets/img/loading.gif">');
+                    $("#resultLabel").html('<img class="loading" src="' + "{{ url_for('static', filename='img/loading.gif') }}" + '">');
                     $("#copyBtn").html("Copy");
                 }
             }).done(function(response, status, xhr) {

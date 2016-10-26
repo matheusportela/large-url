@@ -5,12 +5,19 @@ import json
 from flask import Flask
 from flask import request
 from flask import Response
+from flask import render_template
 import requests
 
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'OPTIONS'])
+@app.route('/', methods=['GET'])
+def index():
+    """Render homepage."""
+    return render_template('index.html')
+
+
+@app.route('/api', methods=['GET', 'OPTIONS'])
 def enlarge_url():
     """Get large URL as received from GET request parameter."""
     url = request.args.get('url')
@@ -75,4 +82,4 @@ def add_http(url):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -1,0 +1,153 @@
+body {
+    font-family: Poppins, Helvetica;
+    background: #f2f2f2;
+}
+
+.title {
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-family: Lobster, Helvetica;
+    text-align: center;
+    color: #99f;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-family: Poppins, Helvetica;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 5px;
+    color: #4c4c7f;
+}
+
+form {
+    display: block;
+    width: 500px;
+    margin: 0 auto;
+    font-size: 0;
+}
+
+.content {
+    text-align: center;
+}
+
+input {
+    width: calc(90% - 70px);
+    margin: 0;
+}
+
+input[type=text] {
+    font-family: Poppins, Helvetica;
+    font-size: 16px;
+    height: 50px;
+    padding: 0 15px;
+    border: 0;
+    font-weight: 300;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #444;
+}
+
+input[type=submit] {
+    font-family: Raleway, Helvetica;
+    font-size: 12px;
+    text-transform: uppercase;
+    height: 50px;
+    background: #99f;
+    color: #fff;
+    padding: 0 10px;
+    border: 0;
+    max-width: 70px;
+    cursor: pointer;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.result {
+    margin: 20px auto 10px auto;
+    font-size: 0;
+    width: 800px;
+}
+
+.result p {
+    font-family: Poppins, Helvetica;
+    font-size: 13px;
+    font-weight: 300;
+    background: #fff;
+    padding: 15px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    display: inline-block;
+    width: calc(90% - 70px);
+}
+
+.result button {
+    font-family: Raleway, Helvetica;
+    height: 50px;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #99f;
+    color: #fff;
+    padding: 0 10px;
+    border: 0;
+    max-width: 70px;
+    cursor: pointer;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.loading {
+    height: 14px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 11px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #4c4c7f;
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
+    border-bottom-color: #4c4c7f;
+}
+
+.example {
+    margin-top: 50px;
+    background: #D0D4FF;
+    background: rgba(208, 212, 255, 0.5);
+    border-radius: 5px;
+    padding: 25px 0;
+}
+
+.example .content {
+    max-width: 800px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.example h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.example h2 {
+    margin: 0;
+    text-align: left;
+}
+
+pre {
+    background: #444;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+}
+
+pre code {
+    color: #eee;
+    white-space: pre-wrap;
+}

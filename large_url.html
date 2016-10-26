@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Large URL</title>
+        <title>Unbitly - URL expander</title>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" type="image/png" href="favicon.png"/>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster|Poppins:300,500|Raleway:700">
+        <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
-        <h1>Large URL</h1>
-        <p>Expand your shortened URLs</p>
+        <div class="title">
+            <h1>Unbitly</h1>
+            <h2>Expand shortened URLs</h2>
+        </div>
 
-        <form action="#" id="urlForm">
-            <label>URL:</label>
-            <input type="text" name="url" value="https://t.co/xF7WTMlLsl">
-            <input type="submit">
-        </form>
+        <div class="content">
+            <form action="#" id="urlForm">
+                <input type="text" name="url" placeholder="URL (e.g.: https://t.co/6Tx32jX6O9)">
+                <input type="submit" value="Expand">
+            </form>
 
-        <div id="resultDiv" style="display: none">
-            <label>Result: </label>
-            <label id="resultLabel"></label>
+            <div class="result" id="resultDiv" style="visibility: hidden">
+                <p id="resultLabel"></p>
+                <button id="copyBtn">Copy</button>
+            </div>
+
+            <div class="example">
+                <div class="content">
+                    <h1>API</h1>
+
+                    <h2>Request</h2>
+                    <pre><code>$ curl http://localhost:5000?url=https://t.co/6Tx32jX6O9</code></pre>
+
+                    <h2>Result</h2>
+                    <pre><code>{
+  "url": "https://techcrunch.com/2016/10/25/the-crunchies-nominations-close-soon/"
+}</code></pre>
+                </div>
+            </div>
         </div>
 
         <script type="text/javascript">
-        $("#urlForm").submit(function(event) {
-            event.preventDefault();
+        $("#urlForm").submit(function(e) {
+            e.preventDefault();
 
             var data = {
                 "url": $(this).find('input[name="url"]').val()
@@ -31,15 +52,39 @@
                 type: "get",
                 url: "http://localhost:5000",
                 data: data,
-                contentType: "application/json"
+                contentType: "application/json",
+                beforeSend: function(xhr, settings) {
+                    $("#resultDiv").css('visibility', 'visible');
+                    $("#resultLabel").html('<img class="loading" src="loading.gif">');
+                    $("#copyBtn").html("Copy");
+                }
             }).done(function(response, status, xhr) {
                 $("#resultLabel").html(response["url"]);
             }).fail(function(xhr, status, error) {
-                $("#resultLabel").html("Error");
+                $("#resultLabel").html("Error when expanding URL");
             }).always(function() {
-                    $("#resultDiv").show();
+
             });
         });
+
+        $("#copyBtn").click(function(e) {
+            var el = document.getElementById("resultLabel");
+            selectElementContents(el);
+            document.execCommand("copy");
+            $("#copyBtn").html("Copied!");
+        });
+
+        var selectElementContents = function(el) {
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
         </script>
+
+        <footer>
+            <p><a href="http://matheusportela.com/">Matheus Portela</a> - 2016</p>
+        </footer>
     </body>
 </html>
